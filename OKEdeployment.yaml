@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prolink-host
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prolink-host
+  template:
+    metadata:
+      labels:
+        app: prolink-host
+    spec:
+      containers:
+        # Name of the application/service. Do not change here. If needed, change via
+        # nameOverride/fullNameOverride in values.yaml either directly or else as a
+        # command line argument at the time of deployment.
+        - name: prolink-host
+
+          image: artifactory.multiplan.com/mpi_javascript/provider/reactjs/prolink-host:1.30
+
+          # Specifies the policy for pulling the image from the registry as defined in values.yaml.
+          # We default to Always, but other valid options are IfNotPresent, and Never. Define these
+          # in values.yaml if wanting to set something other than Always.
+          imagePullPolicy: IfNotPresent
+
+          # Defines what port to open in the container (aka targetPort as defined in values.yaml), and
+          # what protocol to use for ports (defaults to TCP).
+          ports:
+            - name: http
+              containerPort: 3030
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prolink-host
+spec:
+  selector:
+    app: prolink-host
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3030
+  type: NodePort

@@ -1,0 +1,300 @@
+
+            
+
+@use '../../build/css/variables.scss' as *;
+
+.navigation {
+    padding: 0px;
+    font-family: $font-family-primary;
+    font-size: 14px;
+    font-weight: bold;
+    color: $color-primary-base;
+    border-top: 1px $color-nav-border 1px;
+    border-right: 1px $color-nav-border 1px;
+    border-bottom: 0 $color-nav-border 1px;
+    border-left: 1px $color-nav-border 1px;
+    height: 50px;
+    background-color: $color-nav-background;
+    background-image: $color-nav-background-gradient;
+    word-wrap: break-word;
+    position: relative;
+    z-index: 999;
+
+    .hamburger {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .navigation-section {
+        display: flex;
+        white-space: nowrap;
+        margin: 0 auto;
+        width: 75%;
+        height: 100%;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    li:has(.selected) {
+        background-color: $color-primary-base;
+        color: $color-font-light;
+        ;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+/* Apply styles to all parent <li> elements of the selected menu */
+li:has(.selected) {
+    background-color: $color-white;
+    font-weight: bold;
+    border: 1px solid $color-primary-base;
+}
+
+.navigation-section {
+    .navigation-item:has([class*="selected"]) {
+        background-color: $color-primary-base;
+        color: $color-font-light;
+        font-weight: bold;
+    }
+
+    .navigation-item {
+        position: relative;
+        padding: 0 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+
+        &:hover,
+        &:focus-within,
+        &:has([class*="selected"]) {
+            background-color: $color-primary-base;
+            color: $color-font-light;
+            ;
+            border: none;
+            cursor: pointer;
+        }
+
+        .subMenu-items {
+            //width:100%;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            font-family: $font-family-primary;
+            line-height: 1.2;
+            font-weight: normal;
+            font-size: 12px;
+            color: $color-font-dark;
+            border: 1px solid $color-black;
+            text-transform: capitalize;
+            
+            min-width: 100%; //  Ensures submenu is at least as wide as parent
+    
+            
+            li {
+                position: relative;
+                display: block;
+                // text-wrap: auto;
+                // .text{
+                //     width: 100%
+                // }
+               
+
+                svg {
+                    margin-left: 10px;
+                }
+
+                > a,
+                > .text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 10px 13px;
+                }
+
+                ul.subMenu-items-child {
+                    position: absolute;
+                    left: 100%;
+                    top: 0;
+                    font-family: $font-family-primary;
+                    line-height: 1.2;
+                    font-weight: normal;
+                    font-size: 12px;
+                    color: $color-black;
+                    border: 1px solid $color-black;
+                    text-transform: capitalize;
+
+                    li {
+                        display: block;
+
+                        svg {
+                            margin-left: 10px;
+                        }
+
+                        > a,
+                        > .text {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            padding: 10px 13px;
+                        }
+                    }
+                }
+
+                &:hover,
+                &.selected,
+                &:focus-within,
+                &:has([class*="selected"]) {
+                    background-color: $color-primary-base;
+                    color: $color-font-light;
+                    ;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        ul {
+            background: $color-white;
+        }
+    }
+
+    .navigation-item.selected-nav {
+        background-color: $color-primary-base;
+        color: $color-font-light;
+        ;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        .navigation-section {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: $screen-sizes-medium) {
+    .navigation {
+        height: unset;
+        position: relative;
+
+        .hidden {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+            margin: 8px 12px;
+            font-size: 20px;
+        }
+
+        .navigation-section {
+            width: 100%;
+            flex-direction: column;
+            /* Stack items vertically */
+        }
+
+        .navigation-item {
+            position: relative;
+            /* Ensure submenus are positioned relative to their parent */
+            width: 100%;
+            /* Make navigation items take full width */
+            padding: 10px 16px;
+            border-bottom: 1px solid $color-nav-border;
+            display: flex;
+            flex-direction: column;
+
+            .subMenu-items {
+                position: static;
+                /* Remove absolute positioning */
+                margin-top: 8px;
+                /* Add spacing between parent and submenu */
+                width: 100%;
+                /* Ensure submenu takes full width */
+                background-color: $color-white;
+                border: 1px solid $color-nav-border;
+            }
+
+            &.open .subMenu-items {
+                display: block;
+                /* Show submenu when the parent is open */
+            }
+
+            &:hover,
+            &:focus-within {
+                background-color: $color-primary-base;
+                color: $color-font-light;
+            }
+
+            .subMenu-items {
+                width: 100%;
+
+
+                li {
+                    border-bottom: 1px solid $color-nav-border;
+                    display: block;
+
+                    > a,
+                    > .text {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        padding: 8px 16px;
+                    }
+
+                    &:hover {
+                        background-color: $color-primary-base;
+                    }
+
+                    ul.subMenu-items-child {
+                        width: calc(100%);
+                        position: static;
+                        /* Remove absolute positioning */
+                        margin-top: 8px;
+                        /* Add spacing between parent and submenu */
+                        /* Ensure submenu takes full width */
+                        background-color: $color-white;
+                        border: 1px solid $color-nav-border;
+
+                        li {
+                            display: block;
+
+                            > a,
+                            > .text {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                width: 100%;
+                                padding: 8px 16px;
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+
+        }
+    }
+}
+

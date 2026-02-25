@@ -1,0 +1,61 @@
+{
+    "applicationName": "prolinkhost",
+    "applicationType": "ReactJS",
+    "teamName": "Outliers",
+    "emailNotification": "brit.maxwell@claritev.com",
+    "dependencyCheck": false,
+    "xray-threshold": "High",
+   "tools":{
+        "jdk": "Linux_JDK17",
+        "nodejs" :"22.13.0"
+    },
+    "build": {
+        "buildType": "Npm-Docker",
+        "container": true,
+        "artifactoryPath": "mpi_javascript/provider/reactjs",
+        "artifactType": "jar",
+        "sonarProjectKey": "proLinkHost",
+        "checkmarxGroup": "Outliers"
+    },
+    "deployment": {
+        "deployType": "Helm",
+        "helm-chart-dir": "deployment"
+    },
+    "oci":{
+         "oke": {
+            "dev": {
+                "namespace": "prolink",
+                "cluster": "prolink-dev-oke-001"
+            },
+            "sqa": {
+                "namespace": "prolink",
+                "cluster": "prolink-sqa-oke-phx-001"
+            },
+            "prd": {
+                "namespace": "prolink",
+                "cluster": "prolink-prd-oke-phx-001"
+            }
+        }
+    },
+    "servicenow": {
+        "assignment-group": "APP_DEV_MPI_PROVIDER",
+        "business-owner-prd": "BO_IT Systems",
+        "configuration-item": "ProLink Host UI",
+        "it-owner-prd": "ITO_APP_DEV_MPI_PROVIDER",
+        "cr-type-prd": "Automated CICD Pipeline",
+        "prd-autotrigger": true,
+        "prd-bypass-BO_CAB-approvals": true,
+        "watchlist": "brit.maxwell@claritev.com"
+    },
+    "automation-testing": {
+        "smoke-integration": false,
+        "smoke-framework": "",
+        "smoke-testsuite": "",
+        "regression-integration": false,
+        "regression-framework": "",
+        "regression-testsuite": "",
+        "regression-threshold": "",
+        "repository-name": "",
+        "auto-notification": ""
+    }
+}

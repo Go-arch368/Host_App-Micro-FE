@@ -1,0 +1,98 @@
+
+
+
+
+
+
+
+
+
+@use "sass:color";
+@use "./utilities";
+@use "../../build/css/variables" as vars;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '../../node_modules/spa-central-styles/dist/style.css';
+
+:root {
+    --color-primary-base: #{vars.$color-primary-base};
+    --bs-primary: #{vars.$color-primary-base};
+    --bs-primary-rgb: #{color.channel(vars.$color-primary-base, "red", $space: rgb)}, #{color.channel(vars.$color-primary-base, "green", $space: rgb)}, #{color.channel(vars.$color-primary-base, "blue", $space: rgb)};
+    --color-header-title: #{vars.$color-header-title};
+    --color-primary-base: #{vars.$color-primary-base};
+    --color-primary-light: #{vars.$color-primary-light};
+    --color-primary-dark: #{vars.$color-primary-dark};
+    --color-secondary-base: #{vars.$color-secondary-base};
+    --color-secondary-light: #{vars.$color-secondary-light};
+    --color-secondary-dark: #{vars.$color-secondary-dark};
+    --color-tertiary-base: #{vars.$color-tertiary-base};
+    --color-tertiary-light: #{vars.$color-tertiary-light};
+    --color-tertiary-dark: #{vars.$color-tertiary-dark};
+    --color-grey-base: #{vars.$color-grey-base};
+    --color-grey-light: #{vars.$color-grey-light};
+    --color-grey-dark: #{vars.$color-grey-dark};
+    --color-font-base: #{vars.$color-font-base};
+    --color-font-light: #{vars.$color-font-light};
+    --color-font-dark: #{vars.$color-font-dark};
+    --color-font-link: #{vars.$color-font-link};
+    --color-font-focus: #{vars.$color-font-focus};
+    --color-footer-background-color: #{vars.$color-footer-background-color};
+    --color-footer-border-top: #{vars.$color-footer-border-top};
+    --color-nav-background: #{vars.$color-nav-background};
+    --color-nav-border: #{vars.$color-nav-border};
+    --color-nav-background-gradient: #{vars.$color-nav-background-gradient};
+    --color-border-focus: #{vars.$color-border-focus};
+    --color-black: #{vars.$color-black};
+    --color-white: #{vars.$color-white};
+    --color-icon: #{vars.$color-icon};
+    --font-family-primary: #{vars.$font-family-primary};
+    --font-family-secondary: #{vars.$font-family-secondary};
+    --font-size-base: #{vars.$font-size-base};
+    --screen-sizes-small: #{vars.$screen-sizes-small};
+    --screen-sizes-medium: #{vars.$screen-sizes-medium};
+    --screen-sizes-large: #{vars.$screen-sizes-large};
+    --screen-sizes-xlarge: #{vars.$screen-sizes-xlarge};
+    --login-card-background-color: #{vars.$login-card-background-color};
+    --login-card-border: #{vars.$login-card-border};
+    --login-card-box-shadow: #{vars.$login-card-box-shadow};
+    --login-input-border: #{vars.$login-input-border};
+    --login-input-focus-border-color: #{vars.$login-input-focus-border-color};
+    --login-input-focus-box-shadow: #{vars.$login-input-focus-box-shadow};
+    --signin-button-background-color: #{vars.$signin-button-background-color};
+    --signin-button-color: #{vars.$signin-button-color};
+    --signin-button-hover-background-color: #{vars.$signin-button-hover-background-color};
+    --vendor-a-color: #{vars.$vendor-a-color};
+    --vendor-hover-color: #{vars.$vendor-hover-color};
+    --error-color: #{vars.$error-color};
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-size: var(--font-size-base) !important;
+    font-family: var(--font-family-primary) !important;
+}
+
+#root {
+    min-height: 100%;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-shell-content {
+    flex: 1 0 auto;
+    margin-inline: 0;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
